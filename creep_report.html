@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Creep Report — G:/Projects/tuya-local-main</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #0d0d0d; color: #ddd; min-height: 100vh; }
+  .header { background: #111; border-bottom: 1px solid #222; padding: 24px 32px; display: flex; align-items: center; gap: 20px; }
+  .logo { font-family: monospace; font-size: 1.6rem; font-weight: 900; color: #888888; letter-spacing: 0.15em; }
+  .meta { color: #666; font-size: 0.82rem; margin-top: 4px; }
+  .risk-badge { margin-left: auto; background: #88888822; border: 1px solid #888888; color: #888888; padding: 8px 20px; border-radius: 6px; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.1em; text-align: center; }
+  .risk-score { font-size: 0.75rem; color: #88888899; }
+  .layout { display: grid; grid-template-columns: 280px 1fr; gap: 24px; padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
+  .sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .card { background: #111; border: 1px solid #222; border-radius: 6px; padding: 16px; }
+  .card-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 12px; }
+  .filter-btn { display: inline-block; padding: 4px 10px; border-radius: 3px; border: 1px solid #333; background: #1a1a1a; color: #aaa; cursor: pointer; font-size: 0.78rem; margin: 2px; transition: all 0.15s; }
+  .filter-btn:hover, .filter-btn.active { border-color: #666; color: #eee; background: #2a2a2a; }
+  .main { min-width: 0; }
+  .section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #555; margin-bottom: 12px; }
+  table { width: 100%; border-collapse: collapse; }
+  .finding-row { cursor: pointer; transition: filter 0.1s; }
+  .finding-row:hover { filter: brightness(1.3); }
+  td { vertical-align: top; }
+  .empty { color: #444; text-align: center; padding: 48px; font-size: 0.9rem; }
+  .search { width: 100%; background: #1a1a1a; border: 1px solid #333; color: #ddd; padding: 8px 12px; border-radius: 4px; font-size: 0.88rem; margin-bottom: 12px; outline: none; }
+  .search:focus { border-color: #555; }
+</style>
+</head>
+<body>
+
+<div class='header'>
+  <div>
+    <div class='logo'>CREEP</div>
+    <div style='color:#aaa;font-size:0.95rem;margin-top:2px;'>Offensive Security Report — <strong style='color:#ddd'>G:/Projects/tuya-local-main</strong></div>
+    <div class='meta'>Scan ID: 20260622T044823Z &nbsp;·&nbsp; 2026-06-22 04:48:23 UTC &nbsp;·&nbsp; 0 finding(s) &nbsp;·&nbsp; creep/0.1.0</div>
+  </div>
+  <div class='risk-badge'>INFO<div class='risk-score'>score 0/100</div></div>
+</div>
+
+<div class='layout'>
+  <div class='sidebar'>
+    <div class='card'><div class='card-title'>Severity</div>
+<div style='margin-bottom:10px;'><div style='display:flex;justify-content:space-between;margin-bottom:3px;'><span style='color:#ff4444;font-size:0.8rem;font-weight:600;'>CRITICAL</span><span style='color:#888;font-size:0.8rem;'>0</span></div><div style='background:#2a2a2a;border-radius:2px;height:6px;'><div style='background:#ff4444;width:0%;height:6px;border-radius:2px;'></div></div></div>
+<div style='margin-bottom:10px;'><div style='display:flex;justify-content:space-between;margin-bottom:3px;'><span style='color:#ff8800;font-size:0.8rem;font-weight:600;'>HIGH</span><span style='color:#888;font-size:0.8rem;'>0</span></div><div style='background:#2a2a2a;border-radius:2px;height:6px;'><div style='background:#ff8800;width:0%;height:6px;border-radius:2px;'></div></div></div>
+<div style='margin-bottom:10px;'><div style='display:flex;justify-content:space-between;margin-bottom:3px;'><span style='color:#ffcc00;font-size:0.8rem;font-weight:600;'>MEDIUM</span><span style='color:#888;font-size:0.8rem;'>0</span></div><div style='background:#2a2a2a;border-radius:2px;height:6px;'><div style='background:#ffcc00;width:0%;height:6px;border-radius:2px;'></div></div></div>
+<div style='margin-bottom:10px;'><div style='display:flex;justify-content:space-between;margin-bottom:3px;'><span style='color:#44aaff;font-size:0.8rem;font-weight:600;'>LOW</span><span style='color:#888;font-size:0.8rem;'>0</span></div><div style='background:#2a2a2a;border-radius:2px;height:6px;'><div style='background:#44aaff;width:0%;height:6px;border-radius:2px;'></div></div></div>
+<div style='margin-bottom:10px;'><div style='display:flex;justify-content:space-between;margin-bottom:3px;'><span style='color:#888888;font-size:0.8rem;font-weight:600;'>INFO</span><span style='color:#888;font-size:0.8rem;'>0</span></div><div style='background:#2a2a2a;border-radius:2px;height:6px;'><div style='background:#888888;width:0%;height:6px;border-radius:2px;'></div></div></div>
+    </div>
+    <div class='card'><div class='card-title'>Filter by Severity</div>
+      <div><span class='filter-btn active' onclick='filterSev("ALL")'>All</span><span class='filter-btn' onclick='filterSev("CRITICAL")'><span style='color:#ff4444;'>CRITICAL</span> 0</span><span class='filter-btn' onclick='filterSev("HIGH")'><span style='color:#ff8800;'>HIGH</span> 0</span><span class='filter-btn' onclick='filterSev("MEDIUM")'><span style='color:#ffcc00;'>MEDIUM</span> 0</span><span class='filter-btn' onclick='filterSev("LOW")'><span style='color:#44aaff;'>LOW</span> 0</span><span class='filter-btn' onclick='filterSev("INFO")'><span style='color:#888888;'>INFO</span> 0</span></div>
+    </div>
+    <div class='card'><div class='card-title'>Filter by Module</div>
+      <div><span class='filter-btn active' onclick='filterMod("ALL")'>All</span></div>
+    </div>
+    <div class='card'><div class='card-title'>Modules Scanned</div>
+      <div style='display:flex;flex-direction:column;gap:8px;'>
+
+      </div>
+    </div>
+    <div class='card'><div class='card-title'>Scan Info</div>
+      <div style='font-size:0.8rem;color:#666;line-height:1.8;'>
+        <div>Target: <span style='color:#aaa'>G:/Projects/tuya-local-main</span></div>
+        <div>Started: <span style='color:#aaa'>2026-06-22 04:48:23</span></div>
+        <div>Finished: <span style='color:#aaa'>2026-06-22 04:49:08</span></div>
+        <div>Risk score: <span style='color:#888888'>0/100 (INFO)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class='main'>
+    <div class='section-title'>Findings (0)</div>
+    <input class='search' type='text' placeholder='Search findings…' oninput='filterSearch(this.value)'>
+    <div id='findings-wrap'>
+      <div class='empty'>No findings.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let activeSev = 'ALL';
+  let activeMod = 'ALL';
+  let searchTxt = '';
+
+  function applyFilters() {
+    const rows  = document.querySelectorAll('.finding-row');
+    const drows = document.querySelectorAll('.detail-row');
+    drows.forEach(r => r.style.display = 'none');
+    rows.forEach(r => {
+      const sev   = r.dataset.sev;
+      const mod   = r.dataset.mod;
+      const title = r.innerText.toLowerCase();
+      const show  =
+        (activeSev === 'ALL' || sev === activeSev) &&
+        (activeMod === 'ALL' || mod === activeMod) &&
+        (searchTxt === '' || title.includes(searchTxt));
+      r.style.display = show ? '' : 'none';
+    });
+  }
+
+  function filterSev(s) {
+    activeSev = s;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      if (b.onclick && b.onclick.toString().includes('filterSev'))
+        b.classList.toggle('active', b.innerText.trim().startsWith(s) || s === 'ALL');
+    });
+    applyFilters();
+  }
+
+  function filterMod(m) { activeMod = m; applyFilters(); }
+
+  function filterSearch(v) { searchTxt = v.toLowerCase(); applyFilters(); }
+
+  function toggleDetail(row) {
+    const next = row.nextElementSibling;
+    if (next && next.classList.contains('detail-row')) {
+      next.style.display = next.style.display === 'none' ? '' : 'none';
+    }
+  }
+</script>
+</body>
+</html>
